@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dnsresolver-deployment
+  labels:
+    app: dnsresolver-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dnsresolver
+  template:
+    metadata:
+      labels:
+        app: dnsresolver
+    spec:
+      containers:
+        - name: dnsresolver
+          image: ishanRegistery.azurecr.io/dns_resolver:v0.0.1
