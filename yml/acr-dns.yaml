@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
         - name: dnsresolver
-          image: ishanRegistery.azurecr.io/dns_resolver:v0.0.2
+          image: ishanRegistry.azurecr.io/dns_resolver:v0.0.4
       restartPolicy: Never
   backoffLimit: 4
 

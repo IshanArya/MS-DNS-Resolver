@@ -1,4 +1,5 @@
 kubernetes.default
 kubernetes.default.svc
 kubernetes.default.svc.cluster.local
+kube-dns.kube-system.svc.cluster.local
 $KUBERNETES_SERVICE_HOST

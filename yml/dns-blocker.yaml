@@ -1,0 +1,10 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: dns-blocker
+  namespace: kube-system
+spec:
+  podSelector:
+    matchLabels:
+      k8s-app: kube-dns
+  ingress: []

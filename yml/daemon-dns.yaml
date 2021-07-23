@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: dnsresolver-daemon
+  namespace: kube-system
+  labels:
+    k8s-app: dnsresolver-worker
+spec:
+  selector:
+    matchLabels:
+      name: dnsresolver-spread
+  template:
+    metadata:
+      labels:
+        name: dnsresolver-spread
+    spec:
+      tolerations:
+        # this toleration is to have the daemonset runnable on master nodes
+        # remove it if your masters can't run pods
+        - key: node-role.kubernetes.io/master
+          operator: Exists
+          effect: NoSchedule
+      containers:
+        - name: dnsresolver
+          image: ishanRegistry.azurecr.io/dns_resolver:v0.0.3
+          resources:
+            limits:
+              memory: 100Mi
+            requests:
+              cpu: 50m
+              memory: 100Mi

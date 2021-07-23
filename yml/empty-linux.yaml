@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine-empty
+  labels:
+    app: alpine-empty
+    k8s-app: kube-dns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alpine-empty
+  template:
+    metadata:
+      labels:
+        app: alpine-empty
+    spec:
+      containers:
+        - name: alpine-empty
+          image: alpine

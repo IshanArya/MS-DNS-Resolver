@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coredns-diagnostic
+  namespace: kube-system
+  labels:
+    app: coredns-diagnostic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coredns-diagnostic
+  template:
+    metadata:
+      labels:
+        app: coredns-diagnostic
+    spec:
+      containers:
+        - name: coredns-diagnostic
+          image: ishanRegistry.azurecr.io/coredns_diagnostics:v0.0.2
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: default
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view
+subjects:
+  - kind: Deployment
+    name: coredns-diagnostic
+    namespace: kube-system

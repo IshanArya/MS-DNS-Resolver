@@ -1,0 +1,9 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: goldpinger-blocker
+spec:
+  podSelector:
+    matchLabels:
+      death: "true"
+  ingress: []
