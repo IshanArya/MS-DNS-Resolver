@@ -28,13 +28,6 @@ func main() {
 	time.Sleep(1 * time.Second)
 
 	for {
-		//pods, err := clientset.CoreV1().Pods("").List(context.TODO(), metav1.ListOptions{})
-		//check(err)
-		//fmt.Printf("There are %d pods in the cluster\n", len(pods.Items))
-		//
-		//deployments, err := clientset.AppsV1().Deployments("").List(context.TODO(), metav1.ListOptions{})
-		//check(err)
-		//fmt.Printf("There are %d deployments in the cluster\n", len(deployments.Items))
 
 		dnsDeployments, err := clientset.AppsV1().Deployments("").List(context.TODO(), metav1.ListOptions{LabelSelector: `k8s-app=kube-dns`})
 		check(err)
