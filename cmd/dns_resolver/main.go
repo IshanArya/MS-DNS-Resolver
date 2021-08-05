@@ -1,4 +1,4 @@
-package dns_resolver
+package main
 
 import (
 	"bufio"
@@ -19,7 +19,7 @@ func check(e error) {
 
 func main() {
 	cmd := exec.Command("nslookup")
-	filePath := flag.String("path", "./configs/default.txt", "Path to addresses")
+	filePath := flag.String("path", "./configs/kube.txt", "Path to addresses")
 	flag.Parse()
 	file, err := os.Open(*filePath)
 	check(err)
@@ -44,5 +44,6 @@ func main() {
 
 	err = cmd.Run()
 	//check(err)
-	fmt.Printf("data:\n%s\n", out.String())
+	//fmt.Printf("data:\n%s\n", out.String())
+	fmt.Println("Yeeted this.")
 }

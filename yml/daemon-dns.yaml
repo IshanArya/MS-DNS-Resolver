@@ -22,7 +22,7 @@ spec:
           effect: NoSchedule
       containers:
         - name: dnsresolver
-          image: ishanRegistry.azurecr.io/dns_resolver:v0.0.3
+          image: ishanRegistry.azurecr.io/dns_resolver:v0.0.7
           resources:
             limits:
               memory: 100Mi

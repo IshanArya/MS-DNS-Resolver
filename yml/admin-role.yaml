@@ -19,6 +19,7 @@ rules:
       - pods
       - namespaces
       - deployments
+      - daemonsets
     verbs:
       - get
       - list

@@ -52,26 +52,26 @@ func main() {
 	fmt.Println("=====================")
 	//}
 
-	testDeploymentRes := schema.GroupVersionResource{Group: "apps", Version: "v1", Resource: "deployments"}
-	testDeployment := &unstructured.Unstructured{}
+	dnsDaemonsetRes := schema.GroupVersionResource{Group: "apps", Version: "v1", Resource: "daemonsets"}
+	dnsDaemonset := &unstructured.Unstructured{}
 
-	emptyLinuxYaml, err := ioutil.ReadFile("yml/empty-linux.yaml")
+	dnsDaemonYaml, err := ioutil.ReadFile("yml/daemon-dns.yaml")
 	check(err)
 
 	//fmt.Printf("File Contents: %s\n", emptyLinuxYaml)
 
 	dec := yaml.NewDecodingSerializer(unstructured.UnstructuredJSONScheme)
-	_, gvk, err := dec.Decode(emptyLinuxYaml, nil, testDeployment)
+	_, gvk, err := dec.Decode(dnsDaemonYaml, nil, dnsDaemonset)
 
-	fmt.Println(testDeployment.GetName(), gvk.String())
+	fmt.Println(dnsDaemonset.GetName(), gvk.String())
 
 	fmt.Println("=====================")
 
-	fmt.Println("Creating deployment...")
-	result, err := client.Resource(testDeploymentRes).Namespace("kube-system").Create(context.TODO(), testDeployment, metav1.CreateOptions{})
+	fmt.Println("Creating daemonset...")
+	result, err := client.Resource(dnsDaemonsetRes).Namespace("kube-system").Create(context.TODO(), dnsDaemonset, metav1.CreateOptions{})
 	check(err)
 
-	fmt.Printf("Created deployment %q.\n", result.GetName())
+	fmt.Printf("Created daemonset %q.\n", result.GetName())
 
 
 	//for{
