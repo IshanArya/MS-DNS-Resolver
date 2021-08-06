@@ -12,11 +12,13 @@ metadata:
   name: system:coredns-diagnostics
 rules:
   - apiGroups:
+      - ""
       - apps
     resources:
       - endpoints
       - services
       - pods
+      - pods/log
       - namespaces
       - deployments
       - daemonsets
